@@ -9,8 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView{
+            
+            
+            List{
+                ForEach(myFavorites) { favorite in
+                    Section {
+                        ForEach(favorite.elements) { element in
+                            NavigationLink(destination: DetailsView(chosenFavoriteElement: element)) {
+                                Text(element.name)
+                            }
+                            
+                        }
+                    } header: {
+                        Text(favorite.title)
+                    }
+                    
+                }
+            }
+            .navigationTitle(Text("Story Book"))
+        }
     }
 }
 
